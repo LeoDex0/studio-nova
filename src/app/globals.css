@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+:root {
+  --color-ink: #0c0a08;
+  --color-ink-deep: #050403;
+  --color-ink-soft: #171310;
+  --color-bone: #f3ede1;
+  --color-bone-dim: #cabfa8;
+  --color-gold: #b5895a;
+  --color-gold-bright: #dcae79;
+  --color-gold-deep: #7c5a34;
+  --color-line: rgba(243, 237, 225, 0.12);
+}
+
+@theme inline {
+  --color-ink: var(--color-ink);
+  --color-ink-deep: var(--color-ink-deep);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-bone: var(--color-bone);
+  --color-bone-dim: var(--color-bone-dim);
+  --color-gold: var(--color-gold);
+  --color-gold-bright: var(--color-gold-bright);
+  --color-gold-deep: var(--color-gold-deep);
+  --color-line: var(--color-line);
+
+  --font-display: var(--font-cormorant);
+  --font-body: var(--font-inter);
+
+  --animate-marquee: marquee 34s linear infinite;
+  --animate-float: float 8s ease-in-out infinite;
+  --animate-spin-slow: spin 40s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -16px, 0);
+  }
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-bone);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-ink-deep);
+}
+
+* {
+  scrollbar-color: var(--color-gold-deep) var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold-bright);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+/* subtle film-grain texture layered on top of any background.
+   requires the element to already establish a positioning context
+   (relative/absolute/fixed) — intentionally not set here, since an
+   unlayered `position` rule would always beat Tailwind's layered
+   positioning utilities under native CSS cascade layers. */
+.grain {
+  isolation: isolate;
+}
+
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -2,7 +2,9 @@
 
 Website for an architecture and interior design studio.
 
-**Live:** https://studio-nova-leo-dex.vercel.app
+![Preview](.github/preview.jpg)
+
+**Live:** [studio-nova-leo-dex.vercel.app](https://studio-nova-leo-dex.vercel.app)
 
 ## Stack
 

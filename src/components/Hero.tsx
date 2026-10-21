@@ -8,13 +8,6 @@ import { ArrowDown, ArrowRight } from "lucide-react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const MARQUEE_ITEMS = [
-  "Architecture",
-  "Interior Design",
-  "3D Visualization",
-  "Renovation",
-];
-
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
   const lenis = useLenis();
@@ -136,24 +129,6 @@ export default function Hero() {
         </span>
         <ArrowDown className="h-4 w-4" />
       </motion.button>
-
-      <div className="relative z-10 border-t border-line bg-ink-deep/60 py-4 backdrop-blur-sm">
-        <div className="no-scrollbar flex w-full overflow-hidden">
-          <div className="animate-marquee flex shrink-0 items-center gap-10 pr-10">
-            {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map(
-              (item, i) => (
-                <span
-                  key={i}
-                  className="flex shrink-0 items-center gap-10 text-sm font-medium uppercase tracking-[0.2em] text-bone-dim"
-                >
-                  {item}
-                  <span className="h-1 w-1 rounded-full bg-gold-deep" />
-                </span>
-              ),
-            )}
-          </div>
-        </div>
-      </div>
     </section>
   );
 }
